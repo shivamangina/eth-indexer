@@ -1,0 +1,27 @@
+{
+  "name": "eth-indexer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shivamangina/eth-indexer.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shivamangina/eth-indexer/issues"
+  },
+  "homepage": "https://github.com/shivamangina/eth-indexer#readme",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "kafkajs": "^2.2.3",
+    "node-rdkafka": "^2.14.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.31.0"
+  }
+}
