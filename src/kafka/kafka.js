@@ -4,8 +4,13 @@ const { Kafka } = require("kafkajs");
 const dotenv = require("dotenv");
 dotenv.config();
 
+const constants = {
+  TOPIC: "poems",
+  GROUP_ID: "poems-group",
+};
+
 const config = {
-  clientId: process.env["topic"],
+  clientId: constants.TOPIC,
   brokers: [process.env["bootstrap.servers"]],
   ssl: true,
   logLevel: 2,
@@ -21,3 +26,4 @@ const config = {
 const kafka = new Kafka(config);
 
 exports.kafka = kafka;
+exports.constants = constants;
