@@ -19,7 +19,7 @@
   "dependencies": {
     "dotenv": "^16.0.3",
     "kafkajs": "^2.2.3",
-    "node-rdkafka": "^2.14.0"
+    "mongoose": "^6.8.2"
   },
   "devDependencies": {
     "eslint": "^8.31.0"
