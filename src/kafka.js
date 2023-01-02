@@ -5,7 +5,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const config = {
-  clientId: process.env["topics"],
+  clientId: process.env["topic"],
   brokers: [process.env["bootstrap.servers"]],
   ssl: true,
   logLevel: 2,

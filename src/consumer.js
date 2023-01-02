@@ -1,36 +1,23 @@
-const { configFromCli } = require("./config");
-const { createConsumer } = require("./createConsumer");
+const { kafka } = require("./kafka");
 
-async function consumerExample() {
-  const config = await configFromCli();
 
-  if (config.usage) {
-    return console.log(config.usage);
-  }
+const consumer = kafka.consumer({ groupId: "test-group" });
 
-  console.log(`Consuming records from ${config.topic}`);
+const run = async () => {
+  // Consuming
+  await consumer.connect();
+  await consumer.subscribe({ topic: "poems", fromBeginning: true });
 
-  let seen = 0;
-
-  const consumer = await createConsumer(
-    config,
-    ({ key, value, partition, offset }) => {
-      console.log(
-        `Consumed record with key ${key} and value ${value} of partition ${partition} @ offset ${offset}. Updated total count to ${++seen}`
-      );
-    }
-  );
-
-  consumer.subscribe([config.topic]);
-  consumer.consume();
-
-  process.on("SIGINT", () => {
-    console.log("\nDisconnecting consumer ...");
-    consumer.disconnect();
+  await consumer.run({
+    eachMessage: async ({ topic, partition, message }) => {
+      console.log({
+        topic,
+        partition,
+        offset: message.offset,
+        value: message.value.toString(),
+      });
+    },
   });
-}
+};
 
-consumerExample().catch((err) => {
-  console.error(`Something went wrong:\n${err}`);
-  process.exit(1);
-});
+run().catch(console.error);
