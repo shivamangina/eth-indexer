@@ -2,13 +2,13 @@ const { kafka, constants } = require("./kafka");
 
 const producer = kafka.producer();
 
-const run = async () => {
+const runProducer = async (data) => {
   // Producing
   await producer.connect();
   await producer.send({
     topic: constants.TOPIC,
-    messages: [{ value: "Hello KafkaJS user 2!" }],
+    messages: [{ key: data.key, value: JSON.stringify(data.value) }],
   });
 };
 
-run().catch(console.error);
+module.exports = { runProducer };

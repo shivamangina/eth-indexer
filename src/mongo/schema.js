@@ -2,9 +2,25 @@ const { Schema, model } = require("mongoose");
 
 const transactionSchema = new Schema(
   {
-    title: String,
-    postdate: { type: Date, default: Date.now },
-    author: { type: String, default: "Anon" },
+    hash: String,
+    type: Number,
+    blockHash: String,
+    blockNumber: Number,
+    transactionIndex: Number,
+    confirmations: Number,
+    from: String,
+    gasPrice: String, // bigNumber
+    maxPriorityFeePerGas: String, // bigNumber
+    maxFeePerGas: String, // bigNumber
+    gasLimit: String, // bigNumber
+    to: String,
+    value: String, // bigNumber
+    nonce: Number,
+    data: String,
+    r: String,
+    s: String,
+    v: Number,
+    chainId: Number,
   },
   { timestamps: true, collection: "Transactions" }
 );
